@@ -1,0 +1,10 @@
+# Site settings
+title: Follow my Heart
+email: echohn@gmail.com
+description: "Hi,I'm Echo,this is my site ,welcome."
+baseurl: ""
+url: "http://www.echooo.me"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
