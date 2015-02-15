@@ -1,9 +1,13 @@
 # Site settings
-title: Follow my Heart
+title: "Echo's Operation rOom"
 email: echohn@gmail.com
-description: "Hi,I'm Echo,this is my site ,welcome."
+description: "Hi,I'm Echo.This is my site,welcome."
 baseurl: ""
 url: "http://www.echooo.me"
+username: "echohn"
+
+source: /opt/my_jekyll
+destination: /var/www/html/blog
 
 # Build settings
 markdown: kramdown
