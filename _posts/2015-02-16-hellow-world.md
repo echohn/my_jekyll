@@ -11,6 +11,6 @@ categories: jekyll update
 
 不多说了，2015，新年新气象！仅以此 post 作为一个开始，记录我的崭新生活。 
 
-```ruby
+{% highlight ruby %}
 puts "Hello new world!"
-```
+{% endhighlight %}
