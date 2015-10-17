@@ -2,7 +2,7 @@
 layout: post
 title:  "严重的拖延症患者"
 date:   2015-02-16 00:05:00
-categories: jekyll update
+categories:
 tags: 杂记
 ---
 
