@@ -5,6 +5,10 @@ task :build do
   system "jekyll build"
 end
 
+desc "Start a locally server"
+task :s do
+  system "jekyll server -s . -d _site -P 3000 -w"
+end
 
 # Usage: rake post title="A Title" [date="2014-04-14"]
 desc "Create a new post"
@@ -35,6 +39,7 @@ task :post do
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
     post.puts "date: #{date}"
     post.puts "categories:"
+    post.puts "tags:"
     post.puts "---"
   end
 end

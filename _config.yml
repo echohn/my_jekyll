@@ -1,14 +1,26 @@
 # Site settings
-title: "Echo's Operation rOom"
+title: "Echo's Blog"
 email: echohn@gmail.com
-description: "Hi,I'm Echo.This is my site,welcome."
+description: "Hi,I'm Echo."
 baseurl: ""
 url: "http://www.echoed.me"
 username: "echohn"
+
+filter: 'tag'
+
+
+twitter: echo_hon
+weibo: 1130234205
+github: echohn
+
+disqus_shortname: echohn
 
 source: /opt/my_jekyll
 destination: /var/www/html/blog
 
 # Build settings
 markdown: kramdown
-permalink: pretty
+
+sass:
+  style: compressed
+
