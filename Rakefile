@@ -12,7 +12,7 @@ end
 
 # Usage: rake post title="A Title" [date="2014-04-14"]
 desc "Create a new post"
-task :post do
+task :new do
   unless FileTest.directory?('./_posts')
     abort("rake aborted: '_posts' directory not found.")
   end
@@ -39,7 +39,9 @@ task :post do
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
     post.puts "date: #{date}"
     post.puts "categories:"
-    post.puts "tags:"
+    post.puts "tags: "
     post.puts "---"
   end
+
+  exec "open #{filename}"
 end

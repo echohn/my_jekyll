@@ -1,6 +1,6 @@
 ---
 layout: post
-title: “search_ip_location_alfred”
+title: 查询 IP 地址位置的 Alfred Workflow
 date: 2015-04-19 23:00
 categories:
 tags: Mac
