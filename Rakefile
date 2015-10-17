@@ -1,5 +1,19 @@
 require 'time'
 
+desc "Check Github update and build..."
+task :check_and_build do
+  Dir.chdir File.expand_path('..',__FILE__)
+  remote_head = `git ls-remote origin`.lines.map(&:split).first[0]
+  locale_head = `git show-ref`.lines.map(&:split).first[0]
+
+  unless remote_head == locale_head
+    system 'git checkout .'
+    system 'git pull origin master > /dev/null'
+    system "jekyll build"
+  end
+end
+
+
 desc "Build my site ..."
 task :build do
   system "jekyll build"
