@@ -1,5 +1,10 @@
 require 'time'
 
+desc "Auto Check"
+task :autocheck do 
+  exec "god start -c .autocheck.god"
+end
+
 desc "Check Github update and build..."
 task :check_and_build do
   Dir.chdir File.expand_path('..',__FILE__)
