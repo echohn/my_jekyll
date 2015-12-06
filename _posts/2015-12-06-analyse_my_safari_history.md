@@ -3,7 +3,7 @@ layout: post
 title: "分析自己的 Safari 历史记录"
 date: 2015-12-06
 categories: Mac
-tags: Mac,Safari
+tags: Mac Safari
 ---
 
 昨天在知乎逛，看到一个问题[可以用 Python 编程语言做哪些神奇好玩的事情？](http://www.zhihu.com/question/21395276),其中有一个人写了一个脚本统计自己 chrome 浏览记录的 Top 10，我就在想，诶，这个好玩好玩好玩，我也想看看我平时都看嘛了，虽然心中早有猜测，也看看实际情况跟自己心中所想是不是一样。
@@ -62,14 +62,3 @@ select domain_expansion,count(domain_expansion) from "main"."history_items"  gro
 其次，我以后一定少看小说，有时间还是多扫扫 Pocket，刚打开手机看了一下，未读又堆到快700了。
 
 最近开始读李笑来的《把时间当做朋友》，感觉很有收获，希望真能开启心智，发扬精神，好好治一治我的精神病。
-
-
-
-
-
-
-
-
-
-
-
