@@ -1,11 +1,11 @@
 require 'time'
 
-desc "Auto Check"
-task :autocheck do 
+desc "Auto Check on my jekyll server."
+task :autocheck do
   exec "god start -c .autocheck.god"
 end
 
-desc "Check Github update and build..."
+desc "Check Github update and build on my jekyll server."
 task :check_and_build do
   Dir.chdir File.expand_path('..',__FILE__)
   remote_head = `git ls-remote origin`.lines.map(&:split).first[0]
