@@ -12,9 +12,13 @@ tags: Mac Safari
 
 于是写了一条 sql 来查：
 
-```
+
+{% highlight sql %}
+
 select domain_expansion,count(domain_expansion) from "main"."history_items"  group by domain_expansion  ORDER BY count(domain_expansion) desc limit 0,20
-```
+
+{% endhighlight %}
+
 
 结果是这样的，还真的有点出乎意料。
 

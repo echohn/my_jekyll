@@ -1,7 +1,7 @@
 # Site settings
 title: "Echo's Blog"
 email: echohn@gmail.com
-description: "Hi,I'm Echo."
+description: "Hi,I'm Echo Han."
 baseurl: ""
 url: "http://www.echoed.me"
 username: "echohn"
@@ -15,8 +15,8 @@ github: echohn
 
 disqus_shortname: echohn
 
-source: /opt/my_jekyll
-destination: /var/www/html/blog
+source: /Users/Echo/coding/documents/my_jekyll
+destination: /Users/Echo/coding/documents/echohn.github.io
 
 # Build settings
 markdown: kramdown
