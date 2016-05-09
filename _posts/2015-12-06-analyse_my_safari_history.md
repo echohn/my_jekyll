@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "分析自己的 Safari 历史记录"
+title: "看看自己平时上网都在干嘛？"
+subtitle: "分析自己的 Safari 历史记录"
 date: 2015-12-06
 categories: Mac
 tags: Mac Safari

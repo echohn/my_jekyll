@@ -85,8 +85,10 @@ task :new do
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
+    post.puts "subtitle: \'\'"
     post.puts "date: #{date}"
-    post.puts "categories:"
+    post.puts "header-img: \"\""
+    post.puts "author: \"Echo\""
     post.puts "tags: "
     post.puts "---"
   end

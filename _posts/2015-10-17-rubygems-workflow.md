@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 搜索 rubygems 并安装的 Alfred Workflow
+subtitle: 嘿，又是 Alfred workflow
 date: 2015-10-17
 categories:
 tags: Mac Ruby Alfred
@@ -14,10 +15,10 @@ tags: Mac Ruby Alfred
 
 使用 gem 关键字，后接 gem 名进行搜索。待列表出来后，可选择需要的 gem ，enter，即可选择安装或是打开 gem 的相关链接。
 
-![](/assets/post_images/1.png)
+![](/img/in-post/1.png)
 
 
-![](/assets/post_images/2.png)
+![](/img/in-post/2.png)
 
 
 [点击这里下载](https://github.com/echohn/ruby_gems_org_alfred_workflow/raw/master/RubyGems.alfredworkflow)

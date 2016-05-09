@@ -1,16 +1,18 @@
 ---
 layout: post
 title: "服务器操作系统应该选择 RHEL/CentOS 还是 Debian/Ubuntu ？"
+subtitle: "知乎相关问题总结"
 date: 2016-02-03
 categories:
-tags: 运维
+tags: 运维 Linux
+header-img: "img/post-bg-unix-linux.jpg"
 ---
 
 
 
 我第一个接触过的 Linux 是 Fedora Core 4。当时读大一，刚买了电脑，在软件店逛的时候看到了它。当时只是觉得 68 元买一盒正版软件，里面7、8张光盘真是太值了……
 
-![](/assets/post_images/fc4.jpg)
+![](/img/in-post/fc4.jpg)
 
 我用了整整一天，按照说明书的小册子终于把它成功装在电脑上。我很开心的玩了几天，然后就把它删了，因为它自带的小游戏太无聊……
 

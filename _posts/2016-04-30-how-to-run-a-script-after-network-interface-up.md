@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to run a script after network interface up"
+subtitle: "顺便还有怎么不登录系统就能看到 ip 地址"
 date: 2016-04-30
 categories:
 tags: script linux
@@ -52,7 +53,7 @@ cat ${file}.bak >> $file
 
 最后新建一台虚机看一下效果，完美~！
 
-![](/assets/post_images/3.png)
+![](/img/in-post/3.png)
 
 
 

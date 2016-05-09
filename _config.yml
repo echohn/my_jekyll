@@ -1,26 +1,90 @@
 # Site settings
 title: "Echo's Blog"
+SEOTitle: Echo 的网络日志 | Echo's Blog
+header-img: img/home-bg.jpg
 email: echohn@gmail.com
 description: "Hi,I'm Echo Han."
 baseurl: ""
-url: "http://www.echoed.me"
-username: "echohn"
+url: "http://echohn.github.io"
 
-filter: 'tag'
+twitter_username: echo_hon
+# weibo_username: 1130234205
+zhihu_username: echohn
+github_username: echohn
 
 
-twitter: echo_hon
-weibo: 1130234205
-github: echohn
-
-disqus_shortname: echohn
+# disqus_shortname: echohn
 
 source: /Users/Echo/coding/documents/my_jekyll
 destination: /Users/Echo/coding/documents/echohn.github.io
 
 # Build settings
-markdown: kramdown
+highlighter: rouge
 permalink: pretty
-sass:
-  style: compressed
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true
+# if you want to customize anchor. check out line:181 of `post.html`
 
+
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+gems: [jekyll-paginate]
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
+
+
+# Disqus settings
+disqus_username: echohn
+
+# Duoshuo settings
+#duoshuo_username: echohn
+# Share component is depend on Comment so we can NOT use share only.
+#duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+
+
+
+# Analytics settings
+# Baidu Analytics
+ba_track_id: 3f73ebe1e7ff90638adbb85f89789e3a
+# Google Analytics
+ga_track_id: 'UA-77431076-1'            # Format: UA-xxxxxx-xx
+ga_domain: echohn.github.io
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "你好，我是 Echo，我是一名运维工程师，Ruby 爱好者。"
+sidebar-avatar: /img/avatar-echo.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Friends
+friends: [
+    {
+        title: "Echo's Blog",
+        href: "http://echohn.github.io"
+    }
+    #,{
+    #    title: "It helps SEO",
+    #    href: "#"
+    #}
+]

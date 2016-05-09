@@ -2,7 +2,6 @@
 layout: post
 title: Alfred 自动补全的技巧
 date: 2015-10-17
-categories:
 tags: Alfred Ruby Mac
 ---
 
