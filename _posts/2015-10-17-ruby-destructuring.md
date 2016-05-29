@@ -2,8 +2,8 @@
 layout: post
 title: Ruby 强制解构
 date: 2015-10-17
-categories:
 tags: Ruby
+keywords: Ruby Rake 解耦 数组 block 技巧 参数
 ---
 
 今天在写 Rakefile 的时候，突然想起之前看过 Ruby 的一个小技巧。

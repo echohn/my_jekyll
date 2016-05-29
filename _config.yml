@@ -3,9 +3,10 @@ title: "Echo's Blog"
 SEOTitle: Echo 的网络日志 | Echo's Blog
 header-img: img/home-bg.jpg
 email: echohn@gmail.com
-description: "Hi,I'm Echo Han."
+description: "你好，我是 Echo Han。我是一名运维工程师/奶爸/Ruby 爱好者。我不时在这里记录一些自己的想法。欢迎你与我交流。"
 baseurl: ""
 url: "http://echohn.github.io"
+keywords: "Echo Han Hon echohn ops mac ruby 运维 开发 博客 网络日志"
 
 twitter_username: echo_hon
 # weibo_username: 1130234205
@@ -22,7 +23,7 @@ destination: /Users/Echo/coding/documents/echohn.github.io
 highlighter: rouge
 permalink: pretty
 paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+exclude: ["less","node_modules","Gruntfile.js","package.json"]
 anchorjs: true
 # if you want to customize anchor. check out line:181 of `post.html`
 
@@ -66,7 +67,7 @@ ga_domain: echohn.github.io
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "你好，我是 Echo，我是一名运维工程师，Ruby 爱好者。"
+sidebar-about-description: "你好，我是 Echo，我是一名运维工程师/奶爸/Ruby 爱好者。"
 sidebar-avatar: /img/avatar-echo.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 

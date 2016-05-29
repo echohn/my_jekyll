@@ -3,8 +3,8 @@ layout: post
 title: "看看自己平时上网都在干嘛？"
 subtitle: "分析自己的 Safari 历史记录"
 date: 2015-12-06
-categories: Mac
 tags: Mac Safari
+keywords: mac safari 知乎 历史 历史记录
 ---
 
 昨天在知乎逛，看到一个问题[可以用 Python 编程语言做哪些神奇好玩的事情？](http://www.zhihu.com/question/21395276),其中有一个人写了一个脚本统计自己 chrome 浏览记录的 Top 10，我就在想，诶，这个好玩好玩好玩，我也想看看我平时都看嘛了，虽然心中早有猜测，也看看实际情况跟自己心中所想是不是一样。

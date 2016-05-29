@@ -3,8 +3,8 @@ layout: post
 title: "How to run a script after network interface up"
 subtitle: "顺便还有怎么不登录系统就能看到 ip 地址"
 date: 2016-04-30
-categories:
 tags: script linux
+keywords: Linux VMWare 虚拟机 网卡 路由
 ---
 
 我懒，我喜欢让自己的工作环境变得轻松，喜欢 Automate Everything 。

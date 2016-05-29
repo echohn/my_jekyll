@@ -3,6 +3,7 @@ layout: post
 title: Alfred 自动补全的技巧
 date: 2015-10-17
 tags: Alfred Ruby Mac
+keywords: ruby rubygems workflow alfred
 ---
 
 在写这个 [RubyGems Workflow]({% post_url 2015-10-17-rubygems-workflow %}) 这个 Workflow 的时候，我发现了 Alfred 一点很有用的地方，就是对查询的结果进行自动补全，在补全后对查询结果进行另外的操作。

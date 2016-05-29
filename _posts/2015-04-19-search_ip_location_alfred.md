@@ -1,10 +1,9 @@
 ---
 layout: post
 title: 查询 IP 地址位置的 Alfred Workflow
-subtitle: 我的第一个 Alfred workflow
 date: 2015-04-19 23:00
 tags: Mac Alfred
-
+keywords: mac alfred ip location ip138
 ---
 
 

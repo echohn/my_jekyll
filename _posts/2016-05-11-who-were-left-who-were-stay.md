@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "谁离开了，谁还在？"
-subtitle: '怀念那些已经离职了的人们'
 date: 2016-05-11
 header-img: "img/post-bg-time.jpg"
 author: "Echo"
 tags: 杂记
+keywords: 杂记 离职 同事 通讯录
+
 ---
 
 今天想联系某个同事时，没找到他的电话，忽然发现我已经很久没有更新单位的通讯录了。

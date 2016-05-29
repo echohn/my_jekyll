@@ -3,9 +3,9 @@ layout: post
 title: "服务器操作系统应该选择 RHEL/CentOS 还是 Debian/Ubuntu ？"
 subtitle: "知乎相关问题总结"
 date: 2016-02-03
-categories:
 tags: 运维 Linux
 header-img: "img/post-bg-unix-linux.jpg"
+keywords: 知乎 服务器 选择 RHEL RedHat CentOS Debian Ubuntu Fedora OS 操作系统 安全 漏洞 修补
 ---
 
 

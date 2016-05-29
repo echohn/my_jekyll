@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "如何在 Mac 上管理你经常变化的服务器列表？"
-subtitle: '为广大懒人同胞指出一条明路'
 date: 2016-05-15
 header-img: "img/post-bg-unix-linux.jpg"
 author: "Echo"
 tags: 运维
+keywords: 运维 自动化 mac 管理 salt saltstack ssh zsh 终端 脚本
+
 ---
 
 相比传统运维「日久不变」的服务器运维，步入云时代之后，虚拟机创建和销毁频率比之前不知高了多少个量级，原本几年前想象中的可以根据日常负载自动添加机器什么的，已经完全变成了现实。现在想要找几台机器搭个小架构测试点什么东西，也不必像从前那样拉网线改 BIOS 装系统初始化一忙一上午了。
@@ -26,14 +27,14 @@ tags: 运维
 
 所以这里很简单，定期在 SaltMaster 上生成一份 Minions ID 列表，并放在本地的 HTTP 服务上提供下载。
 
-我在 SaltMaster 上也做了一份对 salt 命令的 ZSH 补全规则。这样我本地执行 salt 命令就能自动补全常用命令和 ID 啦。 
+我在 SaltMaster 上也做了一份对 salt 命令的 ZSH 补全规则。这样我本地执行 salt 命令就能自动补全常用命令和 ID 啦。
 
 补全脚本是酱婶儿的：
 
 
 {% highlight bash %}
  cat ~/.zsh/completion/_salt
- 
+
 #compdef salt
 _arguments  \
   "1:keys:($(ruby -ryaml -e 'puts YAML.load(IO.read("/var/www/html/salt_keys.yml"))["minions"]'))"   \

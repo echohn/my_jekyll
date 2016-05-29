@@ -1,10 +1,9 @@
 ---
 layout: post
 title: 搜索 rubygems 并安装的 Alfred Workflow
-subtitle: 嘿，又是 Alfred workflow
 date: 2015-10-17
-categories:
 tags: Mac Ruby Alfred
+keywords: mac ruby alfred gem rubygems
 ---
 
 有时候，我会打开 [rubygems.org](https://rubygems.org) 去搜一个 gem 包。 一般是打开它的 GitHub 主页去查看文档，或是其他一些信息，也有的时候去搜索相关的 gem 进行安装使用。
