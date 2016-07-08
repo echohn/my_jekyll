@@ -31,7 +31,9 @@ anchorjs: true
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
+gems:
+- jekyll-paginate
+- jekyll-haml
 
 
 
@@ -76,14 +78,17 @@ sidebar-avatar: /img/avatar-echo.jpg      # use absolute URL, seeing it's used i
 featured-tags: true                     # whether or not using Feature-Tags
 featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
 
-
+collections:
+  slides:
+    output: true
+    permalink: /slides/:year/:month/:day/:path/
 
 # Friends
 friends: [
-    {
-        title: "Echo's Blog",
-        href: "http://echohn.github.io"
-    }
+     {
+         title: "Mick's Blog",
+         href: "http://mickhan.com"
+     }
     #,{
     #    title: "It helps SEO",
     #    href: "#"

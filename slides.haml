@@ -1,0 +1,20 @@
+---
+layout: page_with_comments
+title: "SILDES"
+description: '我的演讲'
+header-img: "img/slide-bg.jpg"
+author: "Echo"
+keywords: Keynote
+---
+
+
+{% for s in site.slides reversed %}
+%span.fa.fa-slack.listing-seperator
+  %span.tag-text
+    %a{href: "{{ s.url }}"}
+      {{ s.title }}
+%br
+{% endfor %}
+%hr
+
+
