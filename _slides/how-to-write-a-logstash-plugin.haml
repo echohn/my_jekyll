@@ -1,0 +1,479 @@
+---
+layout: slide
+title: 2016.07 部门分享 - How to write a logstash plugin
+date: 2016-07-07
+
+---
+
+%section
+  %h1 How to write a logstash plugin
+  %h3 2016.7.8
+  %p
+    %small
+      Created by
+      %a{:href => "http://echohn.github.io"} Echo Hon
+      \/
+      %a{:href => "http://twitter.com/echo_hon"} @echohn
+%section
+  %h2 Why Logstash?
+  %ul
+    %li.fragment.green Easy
+    %li.fragment.green Pipeline
+    %li.fragment.green Plugins
+    %li.fragment.green JRuby
+    %li.fragment.green ElasticSearch
+    %li.fragment.green Kibana
+%section
+  %h2 Pipeline
+  %section
+    %p.fragment inputs → filters → outputs
+
+    %h3.fragment Event:
+    %p.fragment create → motify  → ship
+  %section
+    %h3 When receive a SIGTERM
+    %ul
+      %li.fragment.green Halt inputs
+      %li.fragment
+        %span.green Waiting
+        for pending events to finish processing
+      %li.fragment
+        waits
+        %span.green indefinitely
+        when cannot be flushed due to a stuck output or filter
+  %section
+    %h3 New Execution Model in version 2.3
+    %blockquote input threads | pipeline worker threads
+    %ul
+      %li Substantially improves thread liveness
+      %li Decreases resource usage
+      %li Increases throughput
+
+  %section{"data-markdown" => ""}
+    %script{:type => "text/template"}
+      `$ top -H`
+      ```
+      9927 root   20   0 9663m 785m  14m S  0.0  0.6   1:44.53 [base]-pipeline
+      9928 root   20   0 9663m 785m  14m S  0.0  0.6   6:59.68 [base]<file
+      9929 root   20   0 9663m 785m  14m S  0.0  0.6   3:13.30 [base]<file
+      9930 root   20   0 9663m 785m  14m S  0.0  0.6   0:00.28 [base]<file
+      9931 root   20   0 9663m 785m  14m S  0.0  0.6  31:51.12 [base]>worker0
+      9932 root   20   0 9663m 785m  14m S  0.0  0.6   5:40.56 [base]-pipeline
+      17005 root  20   0 9663m 785m  14m S  0.0  0.6   0:00.02 [base]>worker0
+      17021 root  20   0 9663m 785m  14m S  0.0  0.6   0:00.02 [base]>worker0
+      ```
+  %section
+    %h3 Options
+    %ul
+      %li
+        %code --pipeline-workers
+      %li
+        %code --pipeline-batch-size
+      %li
+        %code --pipeline-batch-delay
+%section
+  %h2 SYNTAX
+  %section
+    %ul
+      %li section
+      %pre.fragment
+        %code
+          :preserve
+            input {
+                stdin {}
+                syslog {}
+            }
+      %li bool
+      %pre.fragment
+        %code
+          :preserve
+            debug => true
+      %li string
+      %pre.fragment
+        %code
+          :preserve
+            host => "hostname"
+  %section
+    %ul
+      %li number
+      %pre.fragment
+        %code
+          :preserve
+            port => 514
+      %li array
+      %pre.fragment
+        %code
+          :preserve
+            match => ["datetime", "UNIX", "ISO8601"]
+      %li hash
+      %pre.fragment
+        %code
+          :preserve
+            options => {
+                key1 => "value1",
+                key2 => "value2"
+            }
+  %section
+    %h3 Field Reference
+    %pre
+      %code
+        :preserve
+          [geoip][location][0]
+    %pre
+      %code
+        :preserve
+          [geoip][location][-1]
+    %pre
+      %code
+        :preserve
+          "the location is %{[geoip][location][0]}"
+
+  %section
+    %h3 Condition
+    %ul
+      %li ==, !=, <, >, <=, >=
+      %li =~, !~
+      %li in, not in
+      %li and, or, nand, xor
+      %li (), !()
+
+    %pre
+      %code.logstash
+        :preserve
+          if "_grokparsefailure" not in [tags] {
+          } else if [status] !~ /^2\d\d/ or ( [url] == "/noc.gif" nand [geoip][city] != "beijing" ) {
+          } else {
+          }
+
+%section
+  %h2 Codec
+  %p.fragment input → decode → filter → encode → output
+  %pre.fragment
+    %code
+      :preserve
+        input {
+            file {
+                path => "/var/log/nginx/access.log_json""
+                codec => "json"
+            }
+        }
+
+%section
+  %h2 Deveopment Environment
+  %section
+    %h3 Install Jruby
+    %ul
+      %li
+        %a{href: "http://www.oracle.com/technetwork/java/javase/downloads/index.html"} Install JDK
+      %li Set JAVA_HOME
+      %li
+        %a{href: "http://jruby.org/download"} Install JRuby
+    %hr
+    %h4
+      Use
+      %a{href: "https://www.vagrantup.com"} Vagrant
+      on Windows
+  %section
+    %h3 Create Your Gem
+    %pre
+      %code
+        :preserve
+          bundle gem logstash-filter-example
+    %p Add dependencies to your gemspec
+    %pre
+      %code
+        :preserve
+          # Gem dependencies
+          s.add_runtime_dependency 'logstash-core', '>= 1.4.0', '< 2.0.0'
+          s.add_development_dependency 'logstash-devutils'
+    %p Add require Statements to lib/logstash/filters/example.rb
+    %pre
+      %code.ruby
+        :preserve
+          # encoding: utf-8
+          require "logstash/filters/base"
+          require "logstash/namespace"
+  %section
+    %h3
+      Or Clone the
+      %a{href: "https://github.com/logstash-plugins/logstash-filter-example.git"} Example
+  %section
+    %p Make sure all dependencies in your Gemfile are available to your application.
+    %pre
+      %code
+        :preserve
+          bundle install
+%section
+  %h2 File Structure
+  %pre
+    %code.tree
+      :preserve
+        $ tree logstash-output-mypluginname
+        ├── Gemfile
+        ├── LICENSE
+        ├── README.md
+        ├── Rakefile
+        ├── lib
+        │   └── logstash
+        │       └── outputs
+        │           └── mypluginname.rb
+        ├── logstash-output-mypluginname.gemspec
+        └── spec
+            └── outputs
+                └── mypluginname_spec.rb
+%section
+  %h2 Plugin Development
+
+  %p In logstash plugin api 1.x (logstash 2.x):
+  %pre
+    %code
+      :preserve
+        # event get api
+        request_url = event[@source]
+
+        # event set api
+        event['city'] = area.city.name
+  %p In logstash plugin api 2.x (logstash 5.x):
+  %pre
+    %code
+      :preserve
+        # event get api
+        request_url = event.get(@source)
+
+        #event set api
+        event.set('city',area.city.name)
+%section
+  %h2 Input plugin example
+  %pre
+    %code.ruby
+      :preserve
+        class LogStash::Inputs::Example < LogStash::Inputs::Base
+          config_name "example"
+          config :message, :validate => :string, :default => "Hello World!"
+          config :interval, :validate => :number, :default => 1
+
+          public
+          def register
+            @host = Socket.gethostname
+          end
+
+          def run(queue)
+            while !stop?
+              event = LogStash::Event.new("message" => @message, "host" => @host)
+              decorate(event)
+              queue << event
+              Stud.stoppable_sleep(@interval) { stop? }
+            end
+          end
+
+          def stop
+            # examples of common "stop" tasks:
+            #  * close sockets (unblocking blocking reads/accepts)
+            #  * cleanup temporary files
+            #  * terminate spawned threads
+          end
+        end
+%section
+  %h2 Codec plugin example
+  %pre
+    %code.ruby
+      :preserve
+        class LogStash::Codecs::Example < LogStash::Codecs::Base
+          config_name "example"
+          config :append, :validate => :string, :default => ', Hello World!'
+
+          public
+          def register
+            @lines = LogStash::Codecs::Line.new
+            @lines.charset = "UTF-8"
+          end
+
+          public
+          def decode(data)
+            @lines.decode(data) do |line|
+              replace = { "message" => line["message"].to_s + @append }
+              yield LogStash::Event.new(replace)
+            end
+          end
+
+          public
+          def encode(event)
+            @on_event.call(event, event["message"].to_s + @append + NL)
+          end
+        end
+%section
+  %h2 Filter plugin example
+  %pre
+    %code.ruby
+      :preserve
+        class LogStash::Filters::Example < LogStash::Filters::Base
+          config_name "example"
+
+          # Replace the message with this value.
+          config :message, :validate => :string, :default => "Hello World!"
+
+          public
+          def register
+            # Add instance variables
+          end
+
+          public
+          def filter(event)
+
+            if @message
+              # Replace the event message with our message as configured in the
+              # config file.
+              event["message"] = @message
+            end
+
+            # filter_matched should go in the last line of our successful code
+            filter_matched(event)
+          end
+
+        end
+%section
+  %h2 Output plugin example
+  %pre
+    %code.ruby
+      :preserve
+        class LogStash::Outputs::Example < LogStash::Outputs::Base
+          config_name "example"
+
+          # If declared logstash will only allow a single instance of this plugin
+          # to exist, regardless of how many CPU cores logstash detects. This is best
+          # used in cases like the File output, where separate threads writing to a single
+          # File would only cause problems.
+          #
+          # respond_to? check needed for backwards compatibility with < 2.2 Logstashes
+          declare_workers_not_supported! if self.respond_to?(:declare_workers_not_supported!)
+
+          # If declared threadsafe logstash will only ever create one
+          # instance of this plugin per pipeline.
+          # That instance will be shared across all workers
+          # It is up to the plugin author to correctly write concurrent code!
+          #
+          # respond_to? check needed for backwards compatibility with < 2.2 Logstashes
+          declare_threadsafe! if self.respond_to?(:declare_threadsafe!)
+
+          public
+          def register
+            # Does the same thing as declare_workers_not_supported!
+            # But works in < 2.2 logstashes
+            # workers_not_supported
+          end # def register
+
+          public
+          # Takes an array of events
+          def multi_receive(events)
+          end # def multi_receive
+
+          public
+          # Needed for logstash < 2.2 compatibility
+          # Takes events one at a time
+          def receive(event)
+          end # def receive
+
+        end
+
+
+%section
+  %h2 SPEC YOUR PLUGIN
+  %pre
+    %code.ruby
+      :preserve
+        describe LogStash::Filters::Example do
+          describe "Set the province and city" do
+            let(:config) do <<-CONFIG
+              filter {
+                redpage {
+                  source => 'message'
+                }
+              }
+            CONFIG
+            end
+
+            sample("message" => "http://site.xxx.gov.cn/www/areacodexxx/org_codexxx/index.html") do
+              expect(subject["province"]).to eq('河南省')
+              expect(subject["city"]).to eq('周口市')
+              expect(subject["org_name"]).to eq('xxx人力资源和社会保障局')
+
+            end
+          end
+        end
+
+%section
+  %h2 Troubleshooting
+  %pre
+    %code.bash
+      :preserve
+        export JRUBY_OPTS="--server \
+          -J-Xms1500m -J-Xmx1500m   \
+          -J-XX:+UseConcMarkSweepGC \
+          -J-XX:-UseGCOverheadLimit \
+          -J-XX:+CMSClassUnloadingEnabled""
+%section
+  %h3 Build your gem
+  %pre
+    %code
+      :preserve
+        gem build logstash-filter-example.gemspec
+%section
+  %h3 Publish your plugin to RubyGems.org
+  %h4 Licensing
+  %p
+    %a{href: "https://github.com/elasticsearch/logstash/blob/master/LICENSE"} Apache License, version 2 (ALv2)
+  %pre
+    %code
+      :preserve
+        curl -u username:password https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+        chmod 0600 ~/.gem/credentials
+        bundle exec rake publish_gem
+
+
+%section
+  %section
+    %h2 plugin installation
+    %pre
+      %code
+        :preserve
+          Usage:
+              bin/plugin [OPTIONS] SUBCOMMAND [ARG] ...
+
+          Parameters:
+              SUBCOMMAND  subcommand
+              [ARG] ...   subcommand arguments
+
+          Subcommands:
+              install     Install a plugin
+              uninstall   Uninstall a plugin
+              update      Install a plugin
+              list        List all installed plugins
+
+          Options:
+              -h, --help  print help
+  %section{"data-markdown" => ""}
+    %script{:type => "text/template"}
+      \### install a plugin in rubygems
+      ```
+      bin/plugin install logstash-input-example
+      ```
+      \### install a plutin in localhost
+      ```
+      bin/plugin install /path/to/logstash-input-example.gem --no-verify
+      ```
+
+%section{:style => "text-align: left;"}
+  %h1 THE END
+  %p
+    \-
+    %a{:href => "https://www.elastic.co/guide/en/logstash/current/index.html"} Logstash Documentation
+    %br/
+    \-
+    %a{:href => "https://www.gitbook.com/book/chenryn/kibana-guide-cn/details"} ELK user guide in Chinese
+
+
+
+
+
+
+
