@@ -87,7 +87,7 @@ task :new do
     |title: \"#{title.gsub(/-/,' ')}\"
     |subtitle: \'\'
     |date: #{date}
-    |header-img: \"\"
+    |header-img: \"img/post-bg-unix-linux.jpg\"
     |author: \"Echo\"
     |tags:
     |keywords:
