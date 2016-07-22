@@ -9,7 +9,7 @@ permalink: /README.md
 {{ site.description }}
 
 
-我近期更新的日志如下:
+我所有的日志如下:
 
 {% for post in site.posts %}
 

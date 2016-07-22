@@ -29,27 +29,27 @@ keywords: Safari Mac bookmarks backup automate
 
 正常 HTML 生成的`<dt>`标签应该是闭合的。如果在输出后的 HTML 文件不换行，是下面的样式。
 
-```html
+{% highlight html %}
 <DT><a href="http://www.zhihu.com/">知乎</a></DT>
-```
+{% endhighlight %}
 
 这种情况下，Safari 会错误的把`</dt>`前面的`</a>`也解析成书签名，书签名会变成`知乎</a>`
 
 如果输出允许 indent，例如下面的样式：
 
-```html
+{% highlight html %}
 <DT>
   <a href="http://www.zhihu.com/">知乎</a>
 </DT>
-```
+{% endhighlight %}
 
 。。。Safari 根本就认不出来这个书签啦。
 
 我试验出的结果是，Safari 在导入书签的时候，只能识别出非闭合的`<dt>`标签，并且需要把书签放置在`<dt>`标签的同一行中，例如下面这样才能够正常的解析。
 
-```html
+{% highlight html %}
 <DT><a href="http://www.zhihu.com/">知乎</a>
-```
+{% endhighlight %}
 
 由于上面的问题，而且 xsltproc 将 xml 转换成 html 的时候，没法转换非闭合的标签，最后我在写脚本的时候，只能在导出 HTML 时，加了一个 sed 删除所有的`</dt>`标签，这真让强迫症痛苦。。。
 
